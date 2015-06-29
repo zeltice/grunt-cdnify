@@ -30,8 +30,10 @@ function joinBaseAndPath(base, urlPath) {
   var bits = base.split('//'),
       protocol = bits[0], rest = bits[1];
   // Trim any path off if this is a domain-relative URL
-  if (urlPath[0] === '/')
-    rest = rest.split('/')[0];
+  // Not sure under what cases we have to do this?
+  // If rest is "abc.com/some/path/to/some/place" we lose our references.
+  // if (urlPath[0] === '/')
+  //   rest = rest.split('/')[0];
   // Join it all together
   return protocol + '//' + path.normalize("" + rest + "/" + urlPath);
 }
