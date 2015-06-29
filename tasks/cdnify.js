@@ -35,7 +35,12 @@ function joinBaseAndPath(base, urlPath) {
   // if (urlPath[0] === '/')
   //   rest = rest.split('/')[0];
   // Join it all together
-  return protocol + '//' + path.normalize("" + rest + "/" + urlPath);
+  var joined = protocol + '//' + path.normalize("" + rest + "/" + urlPath);
+
+  // Change Windows paths '\' to '/'
+  joined = joined.replace(/\\/g, '/');
+
+  return joined;
 }
 
 // Default options
